@@ -1,0 +1,61 @@
+Java中UDP主要涉及了DatagramPacket和 DatagramSocket两个类。
+
+
+
+前者被认为是信息的容器，后者被认为是收发的实体。
+
+也就是，DatagramPacket类包装一条要发送的信息，并通过DatagramSocket类用于完成信息的发送操作。
+
+
+DatagramPacket构造器   ,参数不同, 含义不同
+
+
+DatagramPacket(byte[] buf,int length); 
+实例化DatagramPacket对象时,指定[接收]的数据,数据的长度
+
+DatagramPacket(byte[] buf,int length,InetAddress address,int port);
+实例化DatagramPacket对象时,指定[发送]的数据,数据的长度,目标地址和端口
+
+方法
+public byte[] getData()  ; 返回接受的数据
+
+public int  getLength()  ; 返回要发送或接受的数据的长度
+
+
+
+DatagramSocket构造器
+DatagramSocket(int port)  ; 创建发送对象,并指定端口
+DatagramSocket()  ;   
+
+方法
+send(DatagramPacket p)  ;发送数据
+receive(DatagramPacket p);接收数据   ,会阻断程序的后续执行, 直到接受到数据为止    
+
+
+-------------------------------UDP和TCP有什么区别--------------------
+
+1、连接方面区别
+
+TCP面向连接（如打电话要先拨号建立连接）。
+
+UDP是无连接的，即发送数据之前不需要建立连接。
+
+2、安全方面的区别
+
+TCP提供可靠的服务，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达。
+
+UDP尽最大努力交付，即不保证可靠交付。
+
+
+
+3、传输效率的区别
+
+TCP传输效率相对较低。
+
+UDP传输效率高，适用于对高速传输和实时性有较高的通信或广播通信。
+
+4、连接对象数量的区别
+
+TCP连接只能是点到点、一对一的。
+
+UDP支持一对一，一对多，多对一和多对多的交互通信。
